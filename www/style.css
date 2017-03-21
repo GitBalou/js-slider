@@ -1,0 +1,28 @@
+html {
+    background-color: #202020;
+    color : #eee;
+}
+
+.slider {
+    float : left;
+    width : 500px;
+    margin: 10px 20px;
+
+    overflow: hidden;
+}
+
+.slider .slider-img {
+    display : block;
+    margin-left : auto;
+    margin-right : auto;
+
+    width : auto;
+    height : 400px;
+
+    overflow : hidden;
+}
+
+.slider .slider-cmd {
+    display : block;
+    text-align: center;
+}
