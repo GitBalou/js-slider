@@ -4,27 +4,56 @@
 
     function Slider(){};
 
-    Plugin.prototype.init = function(elementId, images, delay){
+    Plugin.prototype.init = function(elementId, images, params){
+
+        // paramètres optionnels
+        var params = Object.assign(
+            {
+                delay : 4000,
+                height : 400,
+                width: 400
+            },
+            params
+        );
+
+        console.log(params);
+        // nouvelle instance
         var slider = new Slider();
 
-        slider.container = document.querySelector('#'+elementId);
+        // configuration
+        slider.elementId = elementId;
+        slider.delay = params.delay;
+        slider.imgHeight = params.height;
+        slider.imgWidth = params.width;
+        slider.containerHeight = slider.imgHeight + 100;
+        slider.containerWidth = slider.imgWidth;
+
+        // images
         slider.images = images;
-        slider.delay = delay;
         slider.cursor = 0;
 
+        // création de l'interface
         createIHM(slider);
 
+        // affichage de la première image
         fctRefresh(slider);
     };
 
     // méthodes privées
     function createIHM(instance) {
 
-        // template html
+        // container
+        instance.container = document.querySelector('#'+instance.elementId);
         instance.container.className = 'slider';
+        instance.container.style.height = instance.containerHeight;
+        instance.container.style.width = instance.containerWidth;
 
         var image = document.createElement('img');
         image.className = 'slider-img';
+        image.style.height = instance.imgHeight+'px';
+        image.style.maxWidth = instance.imgWidth+'px';
+        image.style.width = 'auto';
+
 
         var commandes = document.createElement('p');
         commandes.className = 'slider-cmd';
@@ -49,7 +78,6 @@
 
     function fctRefresh(instance){
         instance.container.querySelector('img').src = instance.images[ instance.cursor];
-        console.log(instance.images[ instance.cursor]);
     };
 
     function fctNext(instance) {
@@ -58,7 +86,6 @@
 
         if(  instance.cursor ==  instance.images.length)
             instance.cursor = 0;
-        console.log(instance.cursor);
         fctRefresh( instance);
     };
 

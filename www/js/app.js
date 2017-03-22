@@ -4,4 +4,5 @@ var images = [
     'http://www.gettyimages.fr/gi-resources/images/Embed/new/embed2.jpg'
 ];
 
-SliderPlugin.init('slider1', images, 2000);
+SliderPlugin.init('slider1', images, {delay : 10000});
+SliderPlugin.init('slider2', images, {height: 200, width: 200});
